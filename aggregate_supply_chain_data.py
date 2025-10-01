@@ -1,13 +1,10 @@
 """
-Supply Chain Data Filtering & Aggregation Script
-================================================
-Author: Data Science Expert - Datathon 2025
-Purpose: Filter data to declared range and create time-series aggregations
+Purpose: Filter and aggregatedata to declared range and create time-series aggregation.
 
 This script:
 - Filters data to declared temporal range (Jan 2021 - Jan 2024)
 - Highlights data beyond declared range
-- Aggregates by day and week with key performance metrics
+- Aggregates by day and week with key performance metrics for analysis purposes
 """
 
 import pandas as pd

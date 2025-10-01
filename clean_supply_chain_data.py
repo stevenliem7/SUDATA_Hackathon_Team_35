@@ -1,18 +1,17 @@
 """
-Supply Chain Logistics Data Cleaning Script
-============================================
-Author: Data Science Expert - Datathon 2025
 Purpose: Clean and validate dynamic supply chain logistics dataset
 
-This script performs comprehensive data cleaning including:
+The following data cleaning activities were completed:
 - Data type conversions
 - Missing value handling
-- Duplicate detection and removal
+- Duplicate fields detection and removal
 - Outlier detection and handling
 - Range validation based on field constraints
 - Geospatial validation
 - Temporal validation
 - Data quality reporting
+
+THe Pandas and Numpy libraries were used to perform the data cleaning activities.
 """
 
 import pandas as pd
@@ -96,7 +95,7 @@ class SupplyChainDataCleaner:
         print(f"Converted data types for {len(numeric_columns) + len(binary_columns)} columns")
         
     def check_missing_values(self):
-        """Identify and report missing values."""
+        # Identify and report missing values in the dataset
         missing_counts = self.df.isnull().sum()
         missing_percentages = (missing_counts / len(self.df)) * 100
         
@@ -114,7 +113,7 @@ class SupplyChainDataCleaner:
             print("No missing values detected")
         
     def handle_missing_values(self):
-        """Handle missing values based on domain knowledge."""
+        # Handle missing values 
         initial_rows = len(self.df)
         
         # Remove rows where timestamp is missing (critical field)

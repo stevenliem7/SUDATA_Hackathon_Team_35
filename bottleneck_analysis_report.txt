@@ -1,0 +1,19 @@
+SUPPLY CHAIN BOTTLENECK ANALYSIS REPORT
+Generated: October 01, 2025 at 01:39 PM
+================================================================================
+
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+Analysis Period: Jan 2021 - Jan 2024
+Total Records: 27,001
+Fulfillment Rate: 61.6%
+Total Shipping Costs: $12,383,470.01
+Average Lead Time: 5.2 days
+
+KEY FINDINGS:
+- 38.4% of orders not fulfilled on time
+- 83.0% of deliveries arriving late
+- Equipment unavailable in 72.3% of cases
+- 3090 instances of excessive fuel consumption
+
+See console output for detailed analysis.
