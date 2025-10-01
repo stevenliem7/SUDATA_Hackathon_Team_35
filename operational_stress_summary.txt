@@ -1,16 +1,15 @@
 OPERATIONAL STRESS INDEX SUMMARY
 ==================================================
 
-Total Shipments: 27,001
-Average Stress Index: 2.59
-Overall Late Delivery Rate: 83.0%
-Correlation (Stress vs Late Deliveries): -0.001
+Total Shipments: 1,126
+Average Stress Index: 1.50
+Overall Late Delivery Rate: 50.0%
+Correlation (Stress vs Late Deliveries): 0.031
 
 STRESS INDEX DISTRIBUTION:
-  0 factors: 518 shipments (1.9%)
-  1 factors: 3,686 shipments (13.7%)
-  2 factors: 8,742 shipments (32.4%)
-  3 factors: 8,688 shipments (32.2%)
-  4 factors: 4,330 shipments (16.0%)
-  5 factors: 952 shipments (3.5%)
-  6 factors: 85 shipments (0.3%)
+  0 factors: 195 shipments (17.3%)
+  1 factors: 384 shipments (34.1%)
+  2 factors: 369 shipments (32.8%)
+  3 factors: 146 shipments (13.0%)
+  4 factors: 28 shipments (2.5%)
+  5 factors: 4 shipments (0.4%)
