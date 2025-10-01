@@ -16,7 +16,7 @@ def analyze_late_shipments(filepath):
     print("\n" + "=" * 80)
     print("LATE SHIPMENT BOTTLENECK ANALYSIS")
     print("=" * 80 + "\n")
-    
+        
     df = pd.read_csv(filepath)
     df['timestamp'] = pd.to_datetime(df['timestamp'])
     
@@ -29,22 +29,22 @@ def analyze_late_shipments(filepath):
     
     print(f"OVERALL: {overall_late_pct:.1f}% of shipments are late\n")
     print("=" * 80 + "\n")
-    
-    # Define bottleneck conditions
+        
+    # Define bottleneck conditions (using 75th percentile for most - worst 25% of cases)
     bottlenecks = {
         'Long Lead Time (>75th percentile)': df['lead_time_days'] > df['lead_time_days'].quantile(0.75),
         'Slow Loading (>75th percentile)': df['loading_unloading_time'] > df['loading_unloading_time'].quantile(0.75),
         'Slow Customs (>75th percentile)': df['customs_clearance_time'] > df['customs_clearance_time'].quantile(0.75),
         'No Equipment Available': df['handling_equipment_availability'] == 0,
-        'High Traffic Congestion (>7)': df['traffic_congestion_level'] > 7,
-        'High Port Congestion (>7)': df['port_congestion_level'] > 7,
-        'High Route Risk (>7)': df['route_risk_level'] > 7,
-        'Severe Weather (>0.7)': df['weather_condition_severity'] > 0.7,
-        'High Delay Probability (>0.8)': df['delay_probability'] > 0.8,
+        'High Traffic Congestion (>75th pct)': df['traffic_congestion_level'] > df['traffic_congestion_level'].quantile(0.75),
+        'High Port Congestion (>75th pct)': df['port_congestion_level'] > df['port_congestion_level'].quantile(0.75),
+        'High Route Risk (>75th pct)': df['route_risk_level'] > df['route_risk_level'].quantile(0.75),
+        'Severe Weather (>75th pct)': df['weather_condition_severity'] > df['weather_condition_severity'].quantile(0.75),
+        'High Delay Probability (>75th pct)': df['delay_probability'] > df['delay_probability'].quantile(0.75),
         'Poor Cargo Condition': df['cargo_condition_status'] == 0,
-        'Low Supplier Reliability (<0.3)': df['supplier_reliability_score'] < 0.3,
-        'High Fuel Consumption (>15 L/h)': df['fuel_consumption_rate'] > 15,
-        'Extreme Temperature': (df['iot_temperature'] < -10) | (df['iot_temperature'] > 40),
+        'Low Supplier Reliability (<25th pct)': df['supplier_reliability_score'] < df['supplier_reliability_score'].quantile(0.25),
+        'High Fuel Consumption (>75th pct)': df['fuel_consumption_rate'] > df['fuel_consumption_rate'].quantile(0.75),
+        'Extreme Temperature (>90th or <10th pct)': (df['iot_temperature'] < df['iot_temperature'].quantile(0.10)) | (df['iot_temperature'] > df['iot_temperature'].quantile(0.90)),
         'Order Not Fulfilled': df['order_fulfillment_status'] == 0,
     }
     
@@ -78,11 +78,14 @@ def analyze_late_shipments(filepath):
     for i, result in enumerate(results, 1):
         print(f"{i:<5} {result['Bottleneck']:<40} {result['Affected Shipments']:<12,} {result['Affected %']:<11.1f}% {result['Late When Affected']:<12,} {result['Late %']:<9.1f}%")
     
-    print("\n" + "=" * 80)
     print("\nInterpretation:")
     print("- 'Affected %' = % of total shipments affected by this bottleneck")
     print("- 'Late %' = % of affected shipments that are late (ETA variation > 0)")
-    print("- Compare 'Late %' to overall late rate of {:.1f}% to see impact\n".format(overall_late_pct))
+    print("- Compare 'Late %' to overall late rate of {:.1f}% to see impact".format(overall_late_pct))
+    print("\nThreshold Methodology:")
+    print("- Most bottlenecks use 75th percentile (worst 25% of cases)")
+    print("- This ensures we capture meaningful outliers, not just average performance")
+    print("- Binary variables (equipment, cargo) use actual status (0 = problem)\n")
 
 
 def main():

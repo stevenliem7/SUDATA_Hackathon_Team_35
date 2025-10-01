@@ -1,0 +1,17 @@
+EXTERNAL NETWORK STRESS INDEX SUMMARY
+==================================================
+
+Total Shipments: 27,001
+Average Stress Index: 1.75
+Overall Late Delivery Rate: 83.0%
+Correlation (Stress vs Late Deliveries): -0.003
+
+STRESS INDEX DISTRIBUTION:
+  0 factors: 3,627 shipments (13.4%)
+  1 factors: 8,337 shipments (30.9%)
+  2 factors: 8,436 shipments (31.2%)
+  3 factors: 4,725 shipments (17.5%)
+  4 factors: 1,547 shipments (5.7%)
+  5 factors: 299 shipments (1.1%)
+  6 factors: 27 shipments (0.1%)
+  7 factors: 3 shipments (0.0%)
