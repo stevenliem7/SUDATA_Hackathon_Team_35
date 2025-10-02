@@ -115,6 +115,13 @@ def clean_and_aggregate_data(input_file, output_file):
         'disruption_likelihood_score', 'delay_probability', 'delivery_time_deviation'
     ]
 
+    # Define binary columns (use mean to get percentage)
+    binary_columns = [
+        'handling_equipment_availability',
+        'order_fulfillment_status',
+        'cargo_condition_status'
+    ]
+
     # Aggregate data by date
     daily_data = []
     for date, group in df_filtered.groupby('date'):
@@ -209,6 +216,6 @@ def main():
 
     _ = clean_and_aggregate_data(input_file, output_file)
 
-
+    
 if __name__ == "__main__":
     main()
